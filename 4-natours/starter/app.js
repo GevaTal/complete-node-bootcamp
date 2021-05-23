@@ -7,6 +7,8 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 
+app.use(express.static(`${__dirname}/public`));
+
 app.use('/api/v1/tours',tourRouter);
 app.use('/api/v1/users',userRouter);
 
@@ -30,11 +32,6 @@ app.use((req,res,next) => {
 // app.post('/api/v1/tours',creatTour);
 // app.get('/api/v1/tours',getAllTours);
 
+app.route('/');
 
-
-app.route('/')
-
-const port = 3000;
-app.listen(port, () => {
-    console.log(`app running on port ${port}`);
-});
+module.exports = app;
